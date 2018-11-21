@@ -2,9 +2,11 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CartsList from '../../components/CartsList';
 
-const ArchivedCarts = ({ carts }) => <CartsList carts={carts.filter(it => it.archived)} />;
+const ArchivedCarts = ({ archivedCarts }) => <CartsList carts={archivedCarts} />;
 
-const mapStateToProps = props => props;
+const mapStateToProps = ({ carts }) => ({
+  archivedCarts: carts.filter(it => it.archived),
+});
 
 const ArchivedCartsContainer = connect(mapStateToProps)(ArchivedCarts);
 export default ArchivedCartsContainer;

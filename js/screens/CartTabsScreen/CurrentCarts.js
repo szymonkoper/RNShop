@@ -8,14 +8,16 @@ const doStrangeSound = () => {
   console.log('KLIK!');
 };
 
-const CurrentCarts = ({ carts }) => (
+const CurrentCarts = ({ currentCarts }) => (
   <View>
     <Button label="Add" onTap={doStrangeSound} />
-    <CartsList carts={carts.filter(it => !it.archived)} />
+    <CartsList carts={currentCarts} />
   </View>
 );
 
-const mapStateToProps = props => props;
+const mapStateToProps = ({ carts }) => ({
+  currentCarts: carts.filter(it => !it.archived),
+});
 
 const CurrentCartsContainer = connect(mapStateToProps)(CurrentCarts);
 export default CurrentCartsContainer;
