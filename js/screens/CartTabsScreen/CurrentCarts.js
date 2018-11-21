@@ -4,7 +4,7 @@ import { View } from 'react-native';
 import moment from 'moment';
 import CartsList from '../../components/CartsList';
 import Button from '../../components/Button';
-import { createCart } from '../../redux/carts/actions';
+import { createCart, updateCart } from '../../redux/carts/actions';
 import Cart from '../../models/Cart';
 
 const onAddCartTapped = _createCart => () => {
@@ -13,10 +13,19 @@ const onAddCartTapped = _createCart => () => {
   _createCart(cart);
 };
 
-const CurrentCarts = ({ currentCarts, createCart }) => (
+const onItemLongPress = _updateCart => (cart) => {
+  const updates = {
+    modificationDate: moment().toISOString(),
+    archived: true,
+  };
+
+  _updateCart(Object.assign({}, cart, updates));
+};
+
+const CurrentCarts = ({ currentCarts, createCart, updateCart }) => (
   <View>
     <Button label="Add new shopping list" onTap={onAddCartTapped(createCart)} />
-    <CartsList carts={currentCarts} />
+    <CartsList carts={currentCarts} onItemLongPress={onItemLongPress(updateCart)} />
   </View>
 );
 
@@ -24,7 +33,7 @@ const mapStateToProps = ({ carts }) => ({
   currentCarts: carts.filter(it => !it.archived),
 });
 
-const mapDispatchToProps = { createCart };
+const mapDispatchToProps = { createCart, updateCart };
 
 const CurrentCartsContainer = connect(mapStateToProps, mapDispatchToProps)(CurrentCarts);
 export default CurrentCartsContainer;
