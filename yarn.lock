@@ -5817,6 +5817,11 @@ snapdragon@^0.8.1:
     source-map-resolve "^0.5.0"
     use "^3.1.0"
 
+sort-by-chain@^0.0.5:
+  version "0.0.5"
+  resolved "https://registry.yarnpkg.com/sort-by-chain/-/sort-by-chain-0.0.5.tgz#add2b0b2cd60bffb4cca68f06f9e6b99e3dc7d2a"
+  integrity sha512-M61NXUjdeGwYlEYXD9dMOgQ6Scc9Cm2qNZkT+cWNGe8gO0FRUbR3LX2FEEbskz9dp1PqBZWAyLATC40MxW3a5g==
+
 source-map-resolve@^0.5.0:
   version "0.5.2"
   resolved "https://registry.yarnpkg.com/source-map-resolve/-/source-map-resolve-0.5.2.tgz#72e2cc34095543e43b2c62b2c4c10d4a9054f259"
