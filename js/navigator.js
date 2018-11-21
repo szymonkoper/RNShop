@@ -1,12 +1,5 @@
 import { createStackNavigator } from 'react-navigation';
-import React from 'react';
-import { View, Text } from 'react-native';
-
-const CartTabsScreen = () => (
-  <View>
-    <Text>CartTabsScreen</Text>
-  </View>
-);
+import CartTabsScreen from './screens/CartTabsScreen';
 
 export default createStackNavigator({
   CartTabs: {
