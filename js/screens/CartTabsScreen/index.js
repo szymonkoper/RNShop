@@ -1,13 +1,10 @@
-import React from 'react';
 import { createBottomTabNavigator } from 'react-navigation';
-import { Text } from 'react-native';
-
-const CurrentCartsScreen = () => <Text>Current</Text>;
-const ArchivedCartsScreen = () => <Text>Archived</Text>;
+import CurrentCarts from './CurrentCarts';
+import ArchivedCarts from './ArchivedCarts';
 
 const CartsTabNavigator = createBottomTabNavigator({
-  Current: CurrentCartsScreen,
-  Archived: ArchivedCartsScreen,
+  Current: CurrentCarts,
+  Archived: ArchivedCarts,
 });
 
 export default CartsTabNavigator;
