@@ -1,10 +1,12 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import CartsList from '../../components/CartsList';
 
 class CurrentCarts extends React.Component {
   render() {
-    return <Text>{this.props.currentText}</Text>;
+    const carts = this.props.carts;
+
+    return <CartsList carts={carts} />;
   }
 }
 

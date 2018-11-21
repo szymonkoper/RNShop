@@ -8,9 +8,10 @@ const state = {
   currentText: 'Current123',
   archivedText: 'ArchivedABC',
   carts: [
-    new Cart('Groceries for today', 2, []),
-    new Cart('Car repair tools', 4, []),
+    new Cart('Groceries for today', 3, []),
     new Cart('date with girlfriend', 7, []),
+    new Cart('some very old shopping list', 1, []),
+    new Cart('Car repair tools', 4, []),
   ],
 };
 
