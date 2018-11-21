@@ -1,12 +1,8 @@
 import React from 'react';
-import { Text } from 'react-native';
 import { connect } from 'react-redux';
+import CartsList from '../../components/CartsList';
 
-class ArchivedCarts extends React.Component {
-  render() {
-    return <Text>{this.props.archivedText}</Text>;
-  }
-}
+const ArchivedCarts = ({ carts }) => <CartsList carts={carts.filter(it => it.archived)} />;
 
 const mapStateToProps = props => props;
 

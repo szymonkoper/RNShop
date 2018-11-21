@@ -2,13 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import CartsList from '../../components/CartsList';
 
-class CurrentCarts extends React.Component {
-  render() {
-    const carts = this.props.carts;
-
-    return <CartsList carts={carts} />;
-  }
-}
+const CurrentCarts = ({ carts }) => <CartsList carts={carts.filter(it => !it.archived)} />;
 
 const mapStateToProps = props => props;
 

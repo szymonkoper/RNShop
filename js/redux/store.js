@@ -9,8 +9,9 @@ const state = {
   archivedText: 'ArchivedABC',
   carts: [
     new Cart('Groceries for today', 3, []),
+    new Cart('build this awesome app', 2, [], true),
     new Cart('date with girlfriend', 7, []),
-    new Cart('some very old shopping list', 1, []),
+    new Cart('some very old shopping list', 1, [], true),
     new Cart('Car repair tools', 4, []),
   ],
 };
