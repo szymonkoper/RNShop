@@ -1,8 +1,7 @@
 import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 import Cart from '../models/Cart';
-
-const reducer = (state, action) => state;
+import reducer from './reducer';
 
 const state = {
   carts: [
