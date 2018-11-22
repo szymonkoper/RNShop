@@ -9,3 +9,9 @@ export const updateCart = cart => ({
   type: types.CART_UPDATE,
   cart,
 });
+
+export const addEntryToCart = (cartUuid, entry) => ({
+  type: types.CART_ADD_ENTRY,
+  cartUuid,
+  entry,
+});
