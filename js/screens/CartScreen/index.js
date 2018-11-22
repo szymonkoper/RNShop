@@ -8,32 +8,26 @@ import { updateCart } from '../../redux/carts/actions';
 import Item from '../../models/Item';
 
 class CartScreen extends React.PureComponent {
+  updateCartItems = (items) => {
+    const { cart, updateCart } = this.props;
+    const modificationDate = moment().toISOString();
+
+    updateCart(Object.assign({}, cart, { modificationDate, items }));
+  }
+
   onAddTapped = (text) => {
     if (!text) return;
 
-    const { cart, updateCart } = this.props;
+    const { cart } = this.props;
     const modificationDate = moment().toISOString();
-
-    const updates = {
-      modificationDate,
-      items: [...cart.items, new Item(text, modificationDate)],
-    };
-
-    updateCart(Object.assign({}, cart, updates));
+    this.updateCartItems([...cart.items, new Item(text, modificationDate)]);
   }
 
   onItemTapped = (item) => {
-    console.log(item);
+    const { cart } = this.props;
+    if (cart.archived) return;
 
-    const { cart, updateCart } = this.props;
-    const modificationDate = moment().toISOString();
-
-    const updates = {
-      modificationDate,
-      items: [...cart.items.filter(it => it.uuid !== item.uuid)],
-    };
-
-    updateCart(Object.assign({}, cart, updates));
+    this.updateCartItems([...cart.items.filter(it => it.uuid !== item.uuid)]);
   }
 
   render() {
