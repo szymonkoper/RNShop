@@ -10,22 +10,30 @@ const sortingChain = [
   { valueGetter: it => it.name },
 ];
 
-const orderCarts = carts => sortByChain(carts, sortingChain);
+class CartsList extends React.Component {
+  orderCarts = carts => sortByChain(carts, sortingChain);
 
-const getItemKey = item => item.uuid;
+  getItemKey = item => item.uuid;
 
-const renderItemWithLongPress = onItemLongPress => ({ item }) => (
-  <TouchableOpacity onLongPress={() => onItemLongPress(item)}>
-    <Text>{`${item.modificationDate}: ${item.name}`}</Text>
-  </TouchableOpacity>
-);
+  renderItem = ({ item }) => {
+    const { onItemLongPress } = this.props;
+    return (
+      <TouchableOpacity onLongPress={() => onItemLongPress(item)}>
+        <Text>{`${item.modificationDate}: ${item.name}`}</Text>
+      </TouchableOpacity>
+    );
+  }
 
-const CartsList = ({ carts, onItemLongPress }) => (
-  <FlatList
-    data={orderCarts(carts)}
-    keyExtractor={getItemKey}
-    renderItem={renderItemWithLongPress(onItemLongPress)}
-  />
-);
+  render() {
+    const { carts } = this.props;
+    return (
+      <FlatList
+        data={this.orderCarts(carts)}
+        keyExtractor={this.getItemKey}
+        renderItem={this.renderItem}
+      />
+    );
+  }
+}
 
 export default CartsList;
