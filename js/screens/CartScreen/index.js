@@ -1,14 +1,25 @@
 import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
+import moment from 'moment';
 import CartsItemsList from './CartItemsList';
 import ItemNameInput from '../../components/ItemNameInput';
+import { updateCart } from '../../redux/carts/actions';
+import Item from '../../models/Item';
 
 class CartScreen extends React.PureComponent {
   onAddTapped = (text) => {
     if (!text) return;
 
-    console.log('Should add new item to cart');
+    const { cart, updateCart } = this.props;
+    const modificationDate = moment().toISOString();
+
+    const updates = {
+      modificationDate,
+      items: [...cart.items, new Item(text, modificationDate)],
+    };
+
+    updateCart(Object.assign({}, cart, updates));
   }
 
   render() {
@@ -29,6 +40,7 @@ const mapStateToProps = ({ carts }, props) => ({
 });
 
 const mapDispatchToProps = {
+  updateCart,
 };
 
 const CartScreenContainer = connect(mapStateToProps, mapDispatchToProps)(CartScreen);
