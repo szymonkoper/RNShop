@@ -25,6 +25,11 @@ class CurrentCarts extends React.Component {
     createCart(new Cart(name, moment().toISOString(), []));
   }
 
+  onItemTap = (cart) => {
+    const { navigation } = this.props;
+    navigation.navigate('Cart', { cart });
+  }
+
   onItemLongPress = (cart) => {
     const updates = {
       modificationDate: moment().toISOString(),
@@ -42,7 +47,11 @@ class CurrentCarts extends React.Component {
     return (
       <View>
         <Button label="Add new shopping list" onTap={() => this.showCartAddModal(true)} />
-        <CartsList carts={currentCarts} onItemLongPress={this.onItemLongPress} />
+        <CartsList
+          carts={currentCarts}
+          onItemTap={this.onItemTap}
+          onItemLongPress={this.onItemLongPress}
+        />
         <InputDialog
           label="Enter new shopping list name"
           positiveLabel="Add"

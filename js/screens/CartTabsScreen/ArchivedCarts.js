@@ -4,6 +4,8 @@ import moment from 'moment';
 import CartsList from '../../components/CartsList';
 import { updateCart } from '../../redux/carts/actions';
 
+const onItemTap = navigation => cart => navigation.navigate('Cart', { cart });
+
 const onItemLongPress = _updateCart => (cart) => {
   const updates = {
     modificationDate: moment().toISOString(),
@@ -13,8 +15,12 @@ const onItemLongPress = _updateCart => (cart) => {
   _updateCart(Object.assign({}, cart, updates));
 };
 
-const ArchivedCarts = ({ archivedCarts, updateCart }) => (
-  <CartsList carts={archivedCarts} onItemLongPress={onItemLongPress(updateCart)} />
+const ArchivedCarts = ({ archivedCarts, updateCart, navigation }) => (
+  <CartsList
+    carts={archivedCarts}
+    onItemTap={onItemTap(navigation)}
+    onItemLongPress={onItemLongPress(updateCart)}
+  />
 );
 
 const mapStateToProps = ({ carts }) => ({

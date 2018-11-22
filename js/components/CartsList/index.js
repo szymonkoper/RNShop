@@ -1,6 +1,7 @@
 import React from 'react';
-import { FlatList, Text, TouchableOpacity } from 'react-native';
+import { FlatList } from 'react-native';
 import { sortByChain } from 'sort-by-chain'; // <--- This is my library :)
+import CartListItem from './CartListItem';
 
 // Simple sorting of shopping lists by modification date should be enough,
 // but I couldn't resist urge to show you my awesome 'sort-by-chain' library. :)
@@ -16,12 +17,8 @@ class CartsList extends React.Component {
   getItemKey = item => item.uuid;
 
   renderItem = ({ item }) => {
-    const { onItemLongPress } = this.props;
-    return (
-      <TouchableOpacity onLongPress={() => onItemLongPress(item)}>
-        <Text>{`${item.modificationDate}: ${item.name}`}</Text>
-      </TouchableOpacity>
-    );
+    const { onItemTap, onItemLongPress } = this.props;
+    return <CartListItem item={item} onItemTap={onItemTap} onItemLongPress={onItemLongPress} />;
   }
 
   render() {
