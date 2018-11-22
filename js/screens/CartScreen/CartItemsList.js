@@ -1,8 +1,8 @@
 import React from 'react';
-import { FlatList, Text } from 'react-native';
+import { FlatList } from 'react-native';
 import { sortByChain } from 'sort-by-chain';
+import CartItemsListItem from './CartItemsListItem';
 
-// TODO: Extract item view
 const sortingChain = [
   { valueGetter: it => it.modificationDate, reverse: true },
   { valueGetter: it => it.name },
@@ -12,7 +12,7 @@ const CartItemsList = ({ items }) => (
   <FlatList
     data={sortByChain(items, sortingChain)}
     keyExtractor={item => item.uuid}
-    renderItem={listItem => <Text>{listItem.item.name}</Text>}
+    renderItem={listItem => <CartItemsListItem item={listItem.item} />}
   />
 );
 
