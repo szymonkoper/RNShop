@@ -15,9 +15,9 @@ class CartScreen extends React.PureComponent {
     const { cart } = this.props;
     return (
       <View>
-        <Text>{`Name: ${cart.name}`}</Text>
+        <Text>{`Archived?: ${cart.archived}`}</Text>
         <Text>{`Entries count: ${cart.items.length}`}</Text>
-        <ItemNameInput onAddTapped={this.onAddTapped} />
+        { cart.archived ? null : <ItemNameInput onAddTapped={this.onAddTapped} /> }
         <CartsItemsList items={cart.items} />
       </View>
     );
