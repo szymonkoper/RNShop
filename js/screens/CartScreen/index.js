@@ -1,13 +1,16 @@
 import React from 'react';
-import { Text } from 'react-native';
+import { View, Text } from 'react-native';
+import CartsItemsList from './CartItemsList';
 
-class CartScreen extends React.Component {
+class CartScreen extends React.PureComponent {
   render() {
     const { cart } = this.props.navigation.state.params;
-    return <>
-      <Text>{cart.name}</Text>
-      {cart.items.map(item => <Text>{item.name}</Text>)}
-    </>;
+    return (
+      <View>
+        <Text>{cart.name}</Text>
+        <CartsItemsList items={cart.items} />
+      </View>
+    );
   }
 }
 
