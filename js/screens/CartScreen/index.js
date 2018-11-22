@@ -22,6 +22,20 @@ class CartScreen extends React.PureComponent {
     updateCart(Object.assign({}, cart, updates));
   }
 
+  onItemTapped = (item) => {
+    console.log(item);
+
+    const { cart, updateCart } = this.props;
+    const modificationDate = moment().toISOString();
+
+    const updates = {
+      modificationDate,
+      items: [...cart.items.filter(it => it.uuid !== item.uuid)],
+    };
+
+    updateCart(Object.assign({}, cart, updates));
+  }
+
   render() {
     const { cart } = this.props;
     return (
@@ -29,7 +43,7 @@ class CartScreen extends React.PureComponent {
         <Text>{`Archived?: ${cart.archived}`}</Text>
         <Text>{`Entries count: ${cart.items.length}`}</Text>
         { cart.archived ? null : <ItemNameInput onAddTapped={this.onAddTapped} /> }
-        <CartsItemsList items={cart.items} />
+        <CartsItemsList items={cart.items} onItemTapped={this.onItemTapped} />
       </View>
     );
   }

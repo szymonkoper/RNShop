@@ -8,11 +8,13 @@ const sortingChain = [
   { valueGetter: it => it.name },
 ];
 
-const CartItemsList = ({ items }) => (
+const CartItemsList = ({ items, onItemTapped }) => (
   <FlatList
     data={sortByChain(items, sortingChain)}
     keyExtractor={item => item.uuid}
-    renderItem={listItem => <CartItemsListItem item={listItem.item} />}
+    renderItem={listItem => (
+      <CartItemsListItem item={listItem.item} onItemTapped={() => onItemTapped(listItem.item)} />
+    )}
   />
 );
 
