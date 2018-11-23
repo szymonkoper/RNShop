@@ -44,7 +44,7 @@ class CartScreen extends React.PureComponent {
     this.updateCartItems([...cart.items, new Item(text, modificationDate)]);
   }
 
-  onItemTapped = (item) => {
+  onItemDelete = (item) => {
     const { cart } = this.props;
     if (cart.archived) return;
 
@@ -64,7 +64,7 @@ class CartScreen extends React.PureComponent {
         <CartsItemsList
           style={styles.list}
           items={cart.items}
-          onItemTapped={this.onItemTapped}
+          onItemDelete={this.onItemDelete}
         />
       </View>
     );

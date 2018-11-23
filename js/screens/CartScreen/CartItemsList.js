@@ -10,19 +10,19 @@ const sortingChain = [
   { valueGetter: it => it.name },
 ];
 
-const CartItemsList = ({ items, onItemTapped }) => (
+const CartItemsList = ({ items, onItemDelete }) => (
   <FlatList
     data={sortByChain(items, sortingChain)}
     keyExtractor={item => item.uuid}
     renderItem={listItem => (
-      <CartItemsListItem item={listItem.item} onItemTapped={() => onItemTapped(listItem.item)} />
+      <CartItemsListItem item={listItem.item} onItemDelete={() => onItemDelete(listItem.item)} />
     )}
   />
 );
 
 CartItemsList.propTypes = {
   items: propTypes.arrayOf(itemType).isRequired,
-  onItemTapped: propTypes.func.isRequired,
+  onItemDelete: propTypes.func.isRequired,
 };
 
 export default CartItemsList;
