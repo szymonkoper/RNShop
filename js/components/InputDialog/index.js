@@ -6,11 +6,27 @@ import propTypes from 'prop-types';
 import Button from '../Button';
 
 const { height, width } = Dimensions.get('window');
-const style = StyleSheet.create({
-  borderRadius: 5,
-  borderWidth: 2,
-  marginHorizontal: width * 0.1,
-  marginVertical: height * 0.3,
+const styles = StyleSheet.create({
+  modal: {
+    borderRadius: 10,
+    borderWidth: 2,
+    marginHorizontal: width * 0.1,
+    marginVertical: height * 0.3,
+    backgroundColor: '#fff',
+  },
+  layout: {
+    margin: 10,
+  },
+  header: {
+    fontSize: 18,
+    color: '#016FB9',
+    alignSelf: 'center',
+  },
+  input: {
+    margin: 10,
+    padding: 10,
+    fontSize: 18,
+  },
 });
 
 class InputDialog extends React.Component {
@@ -22,21 +38,29 @@ class InputDialog extends React.Component {
     const { onPositive, onDismiss } = this.props;
     const { inputText } = this.state;
 
+    if (!inputText) return;
+
     onPositive(inputText);
     onDismiss();
   }
 
   render() {
     const {
-      visible, label, positiveLabel, onDismiss,
+      visible, label, placeholder, positiveLabel, onDismiss,
     } = this.props;
 
     return (
       <Modal animationType="slide" transparent visible={visible}>
-        <View style={style}>
-          <View>
-            <Text>{label}</Text>
-            <TextInput onChangeText={this.onChangeText} />
+        <View style={styles.modal}>
+          <View style={styles.layout}>
+            <Text style={styles.header}>{label}</Text>
+
+            <TextInput
+              style={styles.input}
+              placeholder={placeholder}
+              onChangeText={this.onChangeText}
+            />
+
             <Button label={positiveLabel} onTap={this.onTap} />
             <Button label="Cancel" onTap={() => onDismiss()} />
           </View>
@@ -49,6 +73,7 @@ class InputDialog extends React.Component {
 InputDialog.propTypes = {
   visible: propTypes.bool.isRequired,
   label: propTypes.string.isRequired,
+  placeholder: propTypes.string.isRequired,
   positiveLabel: propTypes.string.isRequired,
   onPositive: propTypes.func.isRequired,
   onDismiss: propTypes.func.isRequired,

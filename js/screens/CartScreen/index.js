@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  Button, View, Text, StyleSheet,
+  View, StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';

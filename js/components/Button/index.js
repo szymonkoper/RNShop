@@ -4,6 +4,8 @@ import { TouchableOpacity, Text, StyleSheet } from 'react-native';
 const styles = StyleSheet.create({
   layout: {
     backgroundColor: '#009955',
+    borderColor: '#016FB9',
+    borderWidth: 5,
     margin: 10,
     padding: 15,
     borderRadius: 5,
@@ -11,6 +13,7 @@ const styles = StyleSheet.create({
   text: {
     color: '#ffffff',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });
 

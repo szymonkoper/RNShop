@@ -69,7 +69,8 @@ class CurrentCarts extends React.Component {
           onItemLongPress={this.onItemLongPress}
         />
         <InputDialog
-          label="Enter new shopping list name"
+          label="Add new shopping list"
+          placeholder="Enter a name..."
           positiveLabel="Add"
           visible={modalVisible}
           onPositive={this.onAddCartResultPositive}
