@@ -2,6 +2,8 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { View } from 'react-native';
 import moment from 'moment';
+import propTypes from 'prop-types';
+import { cartsType } from '../../types';
 import CartsList from '../../components/CartsList';
 import Button from '../../components/Button';
 import InputDialog from '../../components/InputDialog';
@@ -63,6 +65,12 @@ class CurrentCarts extends React.Component {
     );
   }
 }
+
+CurrentCarts.propTypes = {
+  currentCarts: cartsType.isRequired,
+  createCart: propTypes.func.isRequired,
+  updateCart: propTypes.func.isRequired,
+};
 
 const mapStateToProps = ({ carts }) => ({
   currentCarts: carts.filter(it => !it.archived),

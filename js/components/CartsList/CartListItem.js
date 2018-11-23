@@ -1,6 +1,7 @@
 import React from 'react';
 import { Text, TouchableOpacity, StyleSheet } from 'react-native';
 import propTypes from 'prop-types';
+import { itemType } from '../../types';
 
 const styles = StyleSheet.create({
   layout: {
@@ -21,22 +22,19 @@ const styles = StyleSheet.create({
   },
 });
 
-const CartListItem = ({ item, onItemTap, onItemLongPress }) => (
+const CartListItem = ({ cart, onItemTap, onItemLongPress }) => (
   <TouchableOpacity
     style={styles.layout}
-    onPress={() => onItemTap(item)}
-    onLongPress={() => onItemLongPress(item)}
+    onPress={() => onItemTap(cart)}
+    onLongPress={() => onItemLongPress(cart)}
   >
-    <Text style={styles.textName} numberOfLines={1}>{item.name}</Text>
-    <Text style={styles.textCount}>{item.items.length}</Text>
+    <Text style={styles.textName} numberOfLines={1}>{cart.name}</Text>
+    <Text style={styles.textCount}>{cart.items.length}</Text>
   </TouchableOpacity>
 );
 
 CartListItem.propTypes = {
-  item: propTypes.shape({
-    name: propTypes.string,
-    items: propTypes.array,
-  }).isRequired,
+  cart: itemType.isRequired,
   onItemTap: propTypes.func.isRequired,
   onItemLongPress: propTypes.func.isRequired,
 };

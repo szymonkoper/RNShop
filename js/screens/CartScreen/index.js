@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
+import propTypes from 'prop-types';
+import { cartType } from '../../types';
 import CartsItemsList from './CartItemsList';
 import ItemNameInput from '../../components/ItemNameInput';
 import { updateCart } from '../../redux/carts/actions';
@@ -42,6 +44,11 @@ class CartScreen extends React.PureComponent {
     );
   }
 }
+
+CartScreen.propTypes = {
+  cart: cartType.isRequired,
+  updateCart: propTypes.func.isRequired,
+};
 
 const mapStateToProps = ({ carts }, props) => ({
   cart: carts.find(cart => cart.uuid === props.navigation.state.params.cart.uuid),

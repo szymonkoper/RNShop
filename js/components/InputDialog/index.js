@@ -1,8 +1,8 @@
 import React from 'react';
 import {
-  Modal, Text, View, TextInput, StyleSheet,
+  Modal, Text, View, TextInput, StyleSheet, Dimensions,
 } from 'react-native';
-import Dimensions from 'Dimensions';
+import propTypes from 'prop-types';
 import Button from '../Button';
 
 const { height, width } = Dimensions.get('window');
@@ -46,5 +46,13 @@ class InputDialog extends React.Component {
     );
   }
 }
+
+InputDialog.propTypes = {
+  visible: propTypes.bool.isRequired,
+  label: propTypes.string.isRequired,
+  positiveLabel: propTypes.string.isRequired,
+  onPositive: propTypes.func.isRequired,
+  onDismiss: propTypes.func.isRequired,
+};
 
 export default InputDialog;
