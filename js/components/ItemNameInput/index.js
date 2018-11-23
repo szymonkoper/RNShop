@@ -13,7 +13,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class ItemNameInput extends React.Component {
+class ItemNameInput extends React.PureComponent {
   state = { inputText: '' }
 
   onTap = () => {

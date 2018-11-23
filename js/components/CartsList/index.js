@@ -13,7 +13,7 @@ const sortingChain = [
   { valueGetter: it => it.name },
 ];
 
-class CartsList extends React.Component {
+class CartsList extends React.PureComponent {
   orderCarts = carts => sortByChain(carts, sortingChain);
 
   getItemKey = item => item.uuid;

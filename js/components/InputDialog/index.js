@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class InputDialog extends React.Component {
+class InputDialog extends React.PureComponent {
   state = { inputText: '' };
 
   onChangeText = inputText => this.setState({ inputText });

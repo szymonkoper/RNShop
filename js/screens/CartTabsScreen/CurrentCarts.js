@@ -20,7 +20,7 @@ const styles = StyleSheet.create({
   },
 });
 
-class CurrentCarts extends React.Component {
+class CurrentCarts extends React.PureComponent {
   state = {
     modalVisible: false,
   };
