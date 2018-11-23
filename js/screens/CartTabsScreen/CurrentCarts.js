@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { View } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import moment from 'moment';
 import propTypes from 'prop-types';
 import { cartsType } from '../../types';
@@ -9,6 +9,16 @@ import Button from '../../components/Button';
 import InputDialog from '../../components/InputDialog';
 import { createCart, updateCart } from '../../redux/carts/actions';
 import Cart from '../../models/Cart';
+
+const styles = StyleSheet.create({
+  layout: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  list: {
+    flex: 1,
+  },
+});
 
 class CurrentCarts extends React.Component {
   state = {
@@ -47,9 +57,13 @@ class CurrentCarts extends React.Component {
     const { modalVisible } = this.state;
 
     return (
-      <View>
-        <Button label="Add new shopping list" onTap={() => this.showCartAddModal(true)} />
+      <View style={styles.layout}>
+        <Button
+          label="Add new shopping list"
+          onTap={() => this.showCartAddModal(true)}
+        />
         <CartsList
+          style={styles.list}
           carts={currentCarts}
           onItemTap={this.onItemTap}
           onItemLongPress={this.onItemLongPress}

@@ -33,7 +33,6 @@ class InputDialog extends React.Component {
 
     return (
       <Modal animationType="slide" transparent visible={visible}>
-
         <View style={style}>
           <View>
             <Text>{label}</Text>

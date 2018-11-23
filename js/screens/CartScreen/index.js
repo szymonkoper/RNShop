@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, Text } from 'react-native';
+import {
+  Button, View, Text, StyleSheet,
+} from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
 import propTypes from 'prop-types';
@@ -8,6 +10,23 @@ import CartsItemsList from './CartItemsList';
 import ItemNameInput from '../../components/ItemNameInput';
 import { updateCart } from '../../redux/carts/actions';
 import Item from '../../models/Item';
+
+const styles = StyleSheet.create({
+  layout: {
+    flexDirection: 'column',
+    flex: 1,
+  },
+  input: {
+    margin: 10,
+    backgroundColor: '#eeeeee',
+    borderRadius: 5,
+  },
+  list: {
+    flex: 1,
+  },
+});
+
+const cartFromNavigation = navigation => navigation.state.params.cart;
 
 class CartScreen extends React.PureComponent {
   updateCartItems = (items) => {
@@ -35,11 +54,18 @@ class CartScreen extends React.PureComponent {
   render() {
     const { cart } = this.props;
     return (
-      <View>
-        <Text>{`Archived?: ${cart.archived}`}</Text>
-        <Text>{`Entries count: ${cart.items.length}`}</Text>
-        { cart.archived ? null : <ItemNameInput onAddTapped={this.onAddTapped} /> }
-        <CartsItemsList items={cart.items} onItemTapped={this.onItemTapped} />
+      <View style={styles.layout}>
+        {
+          cart.archived
+            ? null
+            : <ItemNameInput style={styles.input} onAddTapped={this.onAddTapped} />
+        }
+
+        <CartsItemsList
+          style={styles.list}
+          items={cart.items}
+          onItemTapped={this.onItemTapped}
+        />
       </View>
     );
   }
@@ -51,7 +77,7 @@ CartScreen.propTypes = {
 };
 
 const mapStateToProps = ({ carts }, props) => ({
-  cart: carts.find(cart => cart.uuid === props.navigation.state.params.cart.uuid),
+  cart: carts.find(cart => cart.uuid === cartFromNavigation(props.navigation).uuid),
 });
 
 const mapDispatchToProps = {
