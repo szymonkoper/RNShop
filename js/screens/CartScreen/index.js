@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-  View, StyleSheet,
+  View, Button, StyleSheet,
 } from 'react-native';
 import { connect } from 'react-redux';
 import moment from 'moment';
@@ -28,7 +28,31 @@ const styles = StyleSheet.create({
 
 const cartFromNavigation = navigation => navigation.state.params.cart;
 
+const updateCartAndExit = navigation => () => {
+  const { cart, updateCart } = navigation.state.params;
+  updateCart(Object.assign({}, cart, { archived: !cart.archived }));
+  navigation.pop();
+};
+
 class CartScreen extends React.PureComponent {
+  static navigationOptions = ({ navigation }) => {
+    const cart = cartFromNavigation(navigation);
+
+    return {
+      headerRight: (
+        <Button
+          onPress={updateCartAndExit(navigation)}
+          title={cart.archived ? 'Unarchive' : 'Archive'}
+        />
+      ),
+    };
+  };
+
+  componentDidMount() {
+    const { navigation, updateCart } = this.props;
+    navigation.setParams({ updateCart });
+  }
+
   updateCartItems = (items) => {
     const { cart, updateCart } = this.props;
     const modificationDate = moment().toISOString();
