@@ -1,6 +1,6 @@
 import moment from 'moment';
-import Cart from '../models/Cart';
-import Item from '../models/Item';
+import Cart from '../../models/Cart';
+import Item from '../../models/Item';
 
 const items = {
   groceries: [
@@ -19,12 +19,10 @@ const items = {
   ],
 };
 
-const initialState = {
-  carts: [
-    new Cart('Groceries for today', moment(1318874398806).toISOString(), items.groceries),
-    new Cart('build this awesome app', moment(1318074398806).toISOString(), items.app, true),
-    new Cart('date with girlfriend', moment(1319874398806).toISOString(), items.date),
-  ],
-};
+const initialState = [
+  new Cart('Groceries for today', moment(1318874398806).toISOString(), items.groceries),
+  new Cart('build this awesome app', moment(1318074398806).toISOString(), items.app, true),
+  new Cart('date with girlfriend', moment(1319874398806).toISOString(), items.date),
+];
 
 export default initialState;

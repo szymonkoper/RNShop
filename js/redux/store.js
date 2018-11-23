@@ -1,7 +1,6 @@
 import { applyMiddleware, createStore } from 'redux';
 import logger from 'redux-logger';
 import reducer from './reducer';
-import initialState from './initialState';
 
 
 };
